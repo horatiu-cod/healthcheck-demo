@@ -1,2 +1,2 @@
-# healtcheck-demo
+# healthcheck-demo
 HealtCheck 
