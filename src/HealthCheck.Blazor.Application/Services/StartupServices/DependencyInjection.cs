@@ -1,5 +1,5 @@
 ﻿using HealthCheck.Blazor.Application.Data;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+using HealthCheck.Blazor.Application.HealthChecks;
 
 namespace HealthCheck.Blazor.Application.Services.StartupServices;
 
@@ -11,9 +11,9 @@ public static class DependencyInjection
         builder.Services.AddServerSideBlazor();
         //configure health check
         builder.Services.AddHealthChecks()
-            .AddCheck("Database", () =>
-                HealthCheckResult.Healthy("The check for database service worked"), new[] {"database"});
+            .AddCheck<ResponseTimeHealthCheck>("Network Speed Test", null, new[] { "service" })
         builder.Services.AddSingleton<WeatherForecastService>();
+        builder.Services.AddSingleton<ResponseTimeHealthCheck>();
 
         return builder;
     }
