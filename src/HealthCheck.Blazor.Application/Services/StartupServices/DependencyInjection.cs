@@ -11,8 +11,8 @@ public static class DependencyInjection
         builder.Services.AddServerSideBlazor();
         //configure health check
         builder.Services.AddHealthChecks()
-            .AddCheck("Foo Service", () =>
-                HealthCheckResult.Healthy("The check for foo service worked"));
+            .AddCheck("Database", () =>
+                HealthCheckResult.Healthy("The check for database service worked"), new[] {"database"});
         builder.Services.AddSingleton<WeatherForecastService>();
 
         return builder;

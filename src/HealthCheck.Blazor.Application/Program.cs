@@ -1,7 +1,9 @@
 using HealthCheck.Blazor.Application.Data;
 using HealthCheck.Blazor.Application.Services.StartupServices;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +27,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapHealthChecks("/health");
-//});
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health", new HealthCheckOptions() 
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+
+
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
