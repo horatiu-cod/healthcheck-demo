@@ -1,2 +1,2 @@
 # healthcheck-demo
-HealtCheck 
+HealthCheck 
